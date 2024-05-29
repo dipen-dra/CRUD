@@ -29,7 +29,7 @@ class AddProductActivity : AppCompatActivity() {
             var price: Int = addProductBinding.editTextPrice.text.toString().toInt()
 
             var id = ref.push().key.toString()
-            var data = ProductModel(productName,price,desc)
+            var data = ProductModel(id,productName,price,desc)
             ref.child(id).setValue(data).addOnCompleteListener {
                 if(it.isSuccessful){
                     Toast.makeText(applicationContext,

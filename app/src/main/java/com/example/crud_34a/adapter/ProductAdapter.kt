@@ -1,14 +1,17 @@
 package com.example.crud_34a.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.crud_34a.R
+import com.example.crud_34a.UpdateProductActivity
 import com.example.crud_34a.model.ProductModel
 
-class ProductAdapter (var data :
+class ProductAdapter (var context: Context,var data :
                       ArrayList<ProductModel>) :
     RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(){
 
@@ -37,6 +40,9 @@ class ProductAdapter (var data :
         holder.productDesc.text = data[position].productDesc
 
         holder.btnEdit.setOnClickListener {
+            var intent = Intent(context,UpdateProductActivity::class.java)
+            intent.putExtra("product",data[position])
+            context.startActivity(intent)
 
         }
     }
