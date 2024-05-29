@@ -16,6 +16,7 @@ class ProductAdapter (var data :
         var productName : TextView = view.findViewById(R.id.lblName)
         var productPrice : TextView = view.findViewById(R.id.lblPrice)
         var productDesc : TextView = view.findViewById(R.id.lblDescription)
+        var btnEdit : TextView = view.findViewById(R.id.btnEdit)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -34,5 +35,9 @@ class ProductAdapter (var data :
         holder.productName.text = data[position].productName
         holder.productPrice.text = data[position].productPrice.toString()
         holder.productDesc.text = data[position].productDesc
+
+        holder.btnEdit.setOnClickListener {
+
+        }
     }
 }
