@@ -46,4 +46,9 @@ class ProductAdapter (var context: Context,var data :
 
         }
     }
+
+    fun getProductID(position: Int) : String {
+        return data[position].id
+
+    }
 }

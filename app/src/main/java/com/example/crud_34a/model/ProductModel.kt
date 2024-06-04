@@ -7,12 +7,14 @@ data class ProductModel(
     var id : String = "",
     var productName : String = "",
     var productPrice : Int = 0,
-    var productDesc : String = ""
+    var productDesc : String = "",
+    var url : String = ""
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readInt(),
+        parcel.readString() ?: "",
         parcel.readString() ?: ""
     ) {
     }
@@ -22,6 +24,7 @@ data class ProductModel(
         parcel.writeString(productName)
         parcel.writeInt(productPrice)
         parcel.writeString(productDesc)
+        parcel.writeString(url)
     }
 
     override fun describeContents(): Int {
