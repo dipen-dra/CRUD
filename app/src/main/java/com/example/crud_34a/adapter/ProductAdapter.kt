@@ -5,11 +5,16 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.crud_34a.R
 import com.example.crud_34a.UpdateProductActivity
 import com.example.crud_34a.model.ProductModel
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
+import java.lang.Exception
 
 class ProductAdapter (var context: Context,var data :
                       ArrayList<ProductModel>) :
@@ -20,6 +25,8 @@ class ProductAdapter (var context: Context,var data :
         var productPrice : TextView = view.findViewById(R.id.lblPrice)
         var productDesc : TextView = view.findViewById(R.id.lblDescription)
         var btnEdit : TextView = view.findViewById(R.id.btnEdit)
+        var imageView : ImageView = view.findViewById(R.id.imageView45)
+        var progressBar : ProgressBar = view.findViewById(R.id.progressBar)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -38,6 +45,17 @@ class ProductAdapter (var context: Context,var data :
         holder.productName.text = data[position].productName
         holder.productPrice.text = data[position].productPrice.toString()
         holder.productDesc.text = data[position].productDesc
+
+        var imageUrl = data[position].url
+        Picasso.get().load(imageUrl).into(holder.imageView,object: Callback{
+            override fun onSuccess() {
+                holder.progressBar.visibility = View.INVISIBLE
+            }
+
+            override fun onError(e: Exception?) {
+            }
+
+        })
 
         holder.btnEdit.setOnClickListener {
             var intent = Intent(context,UpdateProductActivity::class.java)
