@@ -78,6 +78,7 @@ class AddProductActivity : AppCompatActivity() {
                 activityResultLauncher.launch(intent)
             }
         }
+
         addProductBinding.button.setOnClickListener {
            if(imageUri != null){
 
@@ -98,13 +99,14 @@ class AddProductActivity : AppCompatActivity() {
 
     fun uploadImage(){
         var imageName = UUID.randomUUID().toString()
-        var imageReference = storageReference.child("products").child(imageName)
+        var imageReference = storageReference.child("products").
+        child(imageName)
 
         imageUri?.let {url->
             imageReference.putFile(url).addOnSuccessListener {
                 imageReference.downloadUrl.addOnSuccessListener {url->
                     var imageUrl =  url.toString()
-                    addProduct(imageUrl)
+                    addProduct(imageUrl,imageName)
                 }
             }.addOnFailureListener {
                 Toast.makeText(applicationContext,
@@ -115,13 +117,14 @@ class AddProductActivity : AppCompatActivity() {
 
 
     }
-    fun addProduct(url: String) {
+    fun addProduct(url: String,imageName: String) {
         var productName: String = addProductBinding.editTextName.text.toString()
         var desc: String = addProductBinding.editTextDesc.text.toString()
         var price: Int = addProductBinding.editTextPrice.text.toString().toInt()
 
         var id = ref.push().key.toString()
-        var data = ProductModel(id, productName, price, desc,url)
+        var data = ProductModel(id, productName, price, desc,url,imageName)
+
         ref.child(id).setValue(data).addOnCompleteListener {
             if (it.isSuccessful) {
                 Toast.makeText(
