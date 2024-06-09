@@ -19,12 +19,17 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class MainActivity : AppCompatActivity() {
     lateinit var mainBinding: ActivityMainBinding
 
     var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     var ref : DatabaseReference = firebaseDatabase.reference.child("products")
+
+    var firebaseStorage: FirebaseStorage = FirebaseStorage.getInstance()
+    var storageReference: StorageReference = firebaseStorage.reference
 
     lateinit var productAdapter: ProductAdapter
     var productList = ArrayList<ProductModel>()
@@ -47,8 +52,13 @@ class MainActivity : AppCompatActivity() {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 var id = productAdapter.getProductID(viewHolder.adapterPosition)
+                var imageName = productAdapter.getImageName(viewHolder.adapterPosition)
                 ref.child(id).removeValue().addOnCompleteListener {
                     if(it.isSuccessful){
+
+                        storageReference.child("products").
+                        child(imageName).delete()
+
                         Toast.makeText(applicationContext,"Deleted",Toast.LENGTH_LONG).show()
                     }
                 }
