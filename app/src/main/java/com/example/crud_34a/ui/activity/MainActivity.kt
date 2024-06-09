@@ -1,4 +1,4 @@
-package com.example.crud_34a
+package com.example.crud_34a.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.crud_34a.R
 import com.example.crud_34a.adapter.ProductAdapter
 import com.example.crud_34a.databinding.ActivityMainBinding
 import com.example.crud_34a.model.ProductModel
