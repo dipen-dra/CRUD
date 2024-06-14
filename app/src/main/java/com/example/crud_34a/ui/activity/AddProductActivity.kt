@@ -21,6 +21,7 @@ import com.example.crud_34a.model.ProductModel
 import com.example.crud_34a.repository.ProductRepository
 import com.example.crud_34a.repository.ProductRepositoryImpl
 import com.example.crud_34a.utils.ImageUtils
+import com.example.crud_34a.utils.LoadingUtils
 import com.example.crud_34a.viewmodel.ProductViewModel
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -31,6 +32,7 @@ import java.util.UUID
 
 class AddProductActivity : AppCompatActivity() {
     lateinit var addProductBinding: ActivityAddProductBinding
+    lateinit var loadingUtils: LoadingUtils
 
 
     lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
@@ -68,6 +70,8 @@ class AddProductActivity : AppCompatActivity() {
                 Picasso.get().load(it).into(addProductBinding.imageBrowse)
             }
         }
+
+        loadingUtils=LoadingUtils(this);
 
         var repo= ProductRepositoryImpl()
         productViewModel= ProductViewModel(repo)
@@ -111,6 +115,7 @@ class AddProductActivity : AppCompatActivity() {
     }
 
     fun uploadImage(){
+        loadingUtils.showLoading()
         var src="add";
         imageUri?.let {
             productViewModel.uploadImages(src,it){ success,imageUrl,message->
@@ -137,9 +142,11 @@ class AddProductActivity : AppCompatActivity() {
             if(success){
                 finish()
                 Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
+                loadingUtils.dismiss()
             }
             else{
                 Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
+                loadingUtils.dismiss()
             }
         }
     }
