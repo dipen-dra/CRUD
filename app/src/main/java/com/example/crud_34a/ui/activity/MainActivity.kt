@@ -2,7 +2,6 @@ package com.example.crud_34a.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -15,16 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.crud_34a.R
 import com.example.crud_34a.adapter.ProductAdapter
 import com.example.crud_34a.databinding.ActivityMainBinding
-import com.example.crud_34a.model.ProductModel
 import com.example.crud_34a.repository.ProductRepositoryImpl
 import com.example.crud_34a.viewmodel.ProductViewModel
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 
 class MainActivity : AppCompatActivity() {
     lateinit var mainBinding: ActivityMainBinding
@@ -101,31 +92,6 @@ class MainActivity : AppCompatActivity() {
 
         }).attachToRecyclerView(mainBinding.recyclerView)
 
-//        ref.addValueEventListener(object: ValueEventListener{
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//
-//                productList.clear()
-//                for (eachData in snapshot.children){
-//                    var product = eachData.getValue(ProductModel::class.java)
-//                    if(product !=null){
-//                        Log.d("my data", product.productName)
-//                        Log.d("my data", product.productDesc)
-//                        Log.d("my data", product.productPrice.toString())
-//
-//                        productList.add(product)
-//                    }
-//
-//
-//                    mainBinding.recyclerView.layoutManager =
-//                        LinearLayoutManager(this@MainActivity)
-//                    mainBinding.recyclerView.adapter = productAdapter
-//                }
-//            }
-
-//            override fun onCancelled(error: DatabaseError) {
-//                TODO("Not yet implemented")
-//            }
-//        })
 
         mainBinding.floatingActionButton.setOnClickListener {
             var intent = Intent(this@MainActivity,
@@ -133,7 +99,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.btnsensorLst)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets

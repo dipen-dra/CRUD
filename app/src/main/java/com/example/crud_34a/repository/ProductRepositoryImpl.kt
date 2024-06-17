@@ -41,9 +41,11 @@ class ProductRepositoryImpl : ProductRepository {
     ) {
         var imageName = ""
         if (src == "add") {
-            var imageName = UUID.randomUUID().toString()
+            imageName = UUID.randomUUID().toString()
         } else {
-            var imageName = src
+            if (src != null) {
+                imageName = src
+            }
         }
         var imageReference = storageReference.child("products").child(imageName)
         imageUri.let { url ->

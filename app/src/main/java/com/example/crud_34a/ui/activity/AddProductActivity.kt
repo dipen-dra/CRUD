@@ -7,9 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -18,17 +16,11 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.crud_34a.R
 import com.example.crud_34a.databinding.ActivityAddProductBinding
 import com.example.crud_34a.model.ProductModel
-import com.example.crud_34a.repository.ProductRepository
 import com.example.crud_34a.repository.ProductRepositoryImpl
 import com.example.crud_34a.utils.ImageUtils
 import com.example.crud_34a.utils.LoadingUtils
 import com.example.crud_34a.viewmodel.ProductViewModel
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
-import java.util.UUID
 
 class AddProductActivity : AppCompatActivity() {
     lateinit var addProductBinding: ActivityAddProductBinding
@@ -106,7 +98,7 @@ class AddProductActivity : AppCompatActivity() {
                    ).show()
            }
         }
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.btnsensorLst)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
