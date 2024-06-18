@@ -18,6 +18,7 @@ class AccelerometerActivity : AppCompatActivity(), SensorEventListener {
     lateinit var accelerometerBinding: ActivityAccelerometerBinding
     lateinit var sensorManager: SensorManager
     lateinit var sensor: Sensor
+    private var lastShakeTime:Long=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         accelerometerBinding = ActivityAccelerometerBinding.inflate(layoutInflater)
