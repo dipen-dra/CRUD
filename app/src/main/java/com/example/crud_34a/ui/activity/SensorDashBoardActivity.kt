@@ -19,5 +19,9 @@ class SensorDashBoardActivity : AppCompatActivity() {
         sensorDashBoardBinding.button2.setOnClickListener{
             startActivity(Intent(this@SensorDashBoardActivity,SensorListActivity::class.java))
         }
+
+        sensorDashBoardBinding.button3.setOnClickListener{
+            startActivity(Intent(this@SensorDashBoardActivity,AccelerometerActivity::class.java))
+        }
     }
 }
