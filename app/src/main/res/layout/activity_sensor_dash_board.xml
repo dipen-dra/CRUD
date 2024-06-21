@@ -28,4 +28,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="gyro sensor"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="186dp" />
+
+    <Button
+        android:id="@+id/LIghtsensor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Light Sensor"
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="273dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,6 @@ class AccelerometerActivity : AppCompatActivity(), SensorEventListener {
         accelerometerBinding = ActivityAccelerometerBinding.inflate(layoutInflater)
         setContentView(accelerometerBinding.root)
         enableEdgeToEdge()
-
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
 
         if (!checkSensor()){
@@ -59,6 +58,8 @@ class AccelerometerActivity : AppCompatActivity(), SensorEventListener {
 
         accelerometerBinding.value.text=
             "x-axis:$xAxis y-axis:$yAxis z-axis:$zAxis"
+
+        detectShake(xAxis,yAxis,zAxis)
 
     }
 
